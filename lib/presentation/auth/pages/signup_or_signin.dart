@@ -7,6 +7,8 @@ import 'package:spotify/core/configs/assets/app_vectors.dart';
 import 'package:spotify/presentation/auth/pages/signin.dart';
 import 'package:spotify/presentation/auth/pages/signup.dart';
 
+import '../../../common/widgets/appbar/app_bar.dart';
+
 class SignupOrSigninPage extends StatelessWidget {
   const SignupOrSigninPage({super.key});
 
@@ -16,6 +18,7 @@ class SignupOrSigninPage extends StatelessWidget {
       child: Scaffold(
         body: Stack(
           children: [
+            BasicAppbar(),
             Align(
               alignment: Alignment.topRight,
               child: SvgPicture.asset(AppVectors.topPattern),
