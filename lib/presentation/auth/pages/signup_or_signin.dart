@@ -14,95 +14,93 @@ class SignupOrSigninPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(
-          children: [
-            BasicAppbar(),
-            Align(
-              alignment: Alignment.topRight,
-              child: SvgPicture.asset(AppVectors.topPattern),
-            ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: SvgPicture.asset(AppVectors.bottomPattern),
-            ),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Image.asset(AppImages.authBG),
-            ),
-            Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(AppVectors.logo),
-                      const SizedBox(height: 55),
-                      const Text(
-                        'Enjoy Listening to Music',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 26,
+    return Scaffold(
+      body: Stack(
+        children: [
+          BasicAppbar(),
+          Align(
+            alignment: Alignment.topRight,
+            child: SvgPicture.asset(AppVectors.topPattern),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: SvgPicture.asset(AppVectors.bottomPattern),
+          ),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Image.asset(AppImages.authBG),
+          ),
+          Align(
+              alignment: Alignment.center,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(AppVectors.logo),
+                    const SizedBox(height: 55),
+                    const Text(
+                      'Enjoy Listening to Music',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 26,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 21,
+                    ),
+                    const Text(
+                      'Spotify is a proprietary Swedish audio streaming and media services provider',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 17,
+                          color: Colors.grey),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: BasicAppButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                    const SignupPage(),
+                                  ),
+                                );
+                              },
+                              title: 'Register'),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 21,
-                      ),
-                      const Text(
-                        'Spotify is a proprietary Swedish audio streaming and media services provider',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 17,
-                            color: Colors.grey),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: BasicAppButton(
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                            child: TextButton(
                                 onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
+                                  Navigator.push(context, MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                      const SignupPage(),
-                                    ),
-                                  );
+                                          const SigninPage()));
                                 },
-                                title: 'Register'),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Expanded(
-                              child: TextButton(
-                                  onPressed: () {
-                                    Navigator.push(context, MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            const SigninPage()));
-                                  },
-                                  child: Text(
-                                    'Sign in',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: context.isDarkMode
-                                            ? Colors.white
-                                            : Colors.black),
-                                  )))
-                        ],
-                      )
-                    ],
-                  ),
-                ))
-          ],
-        ),
+                                child: Text(
+                                  'Sign in',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: context.isDarkMode
+                                          ? Colors.white
+                                          : Colors.black),
+                                )))
+                      ],
+                    )
+                  ],
+                ),
+              ))
+        ],
       ),
     );
   }

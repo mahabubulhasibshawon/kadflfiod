@@ -40,6 +40,9 @@ dependencies:
   flutter_bloc: ^8.1.6
   path_provider: ^2.1.4
   bloc: ^8.1.4
+  firebase_core: ^3.5.0
+  firebase_auth: ^5.3.0
+  get_it: ^7.7.0
 
 dev_dependencies:
   flutter_test:
