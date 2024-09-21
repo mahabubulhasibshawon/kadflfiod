@@ -4,6 +4,8 @@ import 'package:spotify/data/sources/auth/auth_firebase_service.dart';
 import 'package:spotify/domain/repository/auth/auth.dart';
 import 'package:spotify/domain/usecases/auth/signup.dart';
 
+import 'domain/usecases/auth/signin.dart';
+
 final sl = GetIt.instance;
 
 Future<void> initializeDependencies() async {
@@ -15,5 +17,8 @@ Future<void> initializeDependencies() async {
   );
   sl.registerSingleton<SignupUseCase>(
       SignupUseCase()
+  );
+  sl.registerSingleton<SigninUseCase>(
+      SigninUseCase()
   );
 }

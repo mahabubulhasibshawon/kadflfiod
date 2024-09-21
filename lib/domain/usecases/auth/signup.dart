@@ -10,5 +10,4 @@ class SignupUseCase implements UseCase<Either,CreateUserReq> {
   Future<Either> call({CreateUserReq ? params}) {
     return sl<AuthRepository>().signup(params!);
   }
-  
 }
