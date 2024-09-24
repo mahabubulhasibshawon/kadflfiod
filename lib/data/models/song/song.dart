@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:spotify/domain/entities/songs/song.dart';
 
 class SongModel {
   String ? title;
@@ -17,10 +18,22 @@ class SongModel {
     required this.songId,
   });
 
-  SongModel.fromJson(Map<String,dynamic> data) {
+  SongModel.fromJson(Map<String, dynamic> data) {
     title = data['title'];
     artist = data['artist'];
     duration = data['duration'];
     releaseDate = data['releaseDate'];
   }
 }
+
+extension SongModelX on SongModel {
+SongEnity toEntity() {
+  return SongEnity(
+      title: title!,
+      artist: artist!,
+      duration: duration!,
+      releaseDate: releaseDate!,
+      isFavorite: isFavorite!,
+      songId: songId!
+  );
+}}
