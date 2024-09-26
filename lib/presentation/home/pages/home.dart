@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _homeTopCard(),
-            _tabs(_tabController), // Pass _tabController here
+            _tabs(), // Pass _tabController here
             SizedBox(
               height: 260,
               child: TabBarView(controller: _tabController, children: [
@@ -75,11 +75,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     );
   }
 
-  Widget _tabs(TabController tabController) {
+  Widget _tabs() {
     return TabBar(
-      controller: tabController,
+      controller: _tabController,
       isScrollable: true,
-      labelColor: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
+      labelColor: context.isDarkMode ? Colors.white : Colors.black,
       indicatorColor: AppColors.primary,
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
       tabs: const [

@@ -1,4 +1,6 @@
-part of 'news_songs_cubit.dart';
+// part of 'news_songs_cubit.dart';
+
+import '../../../domain/entities/songs/song.dart';
 
 abstract class NewsSongsState {}
 

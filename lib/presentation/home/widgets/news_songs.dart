@@ -6,6 +6,7 @@ import 'package:spotify/domain/entities/songs/song.dart';
 import 'package:spotify/presentation/home/bloc/news_songs_cubit.dart';
 
 import '../../../core/configs/theme/app_colors.dart';
+import '../bloc/news_songs_state.dart';
 
 class NewsSongs extends StatelessWidget {
   const NewsSongs({super.key});
