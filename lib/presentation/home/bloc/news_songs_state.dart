@@ -1,7 +1,6 @@
 part of 'news_songs_cubit.dart';
 
-@immutable
-sealed class NewsSongsState {}
+abstract class NewsSongsState {}
 
 class NewsSongsLoading extends NewsSongsState {}
 

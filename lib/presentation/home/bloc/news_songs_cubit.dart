@@ -1,5 +1,4 @@
  import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:spotify/domain/entities/songs/song.dart';
 import 'package:spotify/domain/usecases/song/get_news_songs.dart';
 
