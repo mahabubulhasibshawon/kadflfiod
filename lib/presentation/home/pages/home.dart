@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:spotify/core/configs/assets/app_images.dart';
+import 'package:spotify/presentation/home/widgets/play_list.dart';
 
 import '../../../common/widgets/appbar/app_bar.dart';
 import '../../../core/configs/assets/app_vectors.dart';
@@ -49,7 +50,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 Container(),
                 Container(),
               ]),
-            )
+            ),
+            SizedBox(height: 40,),
+            PlayList()
           ],
         ),
       ),
