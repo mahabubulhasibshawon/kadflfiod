@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify/common/widgets/appbar/app_bar.dart';
+import 'package:spotify/core/configs/theme/app_colors.dart';
 import 'package:spotify/domain/entities/songs/song.dart';
+import 'package:spotify/presentation/song_player/bloc/song_player_cubit.dart';
 
 import '../../../core/configs/constants/app_urls.dart';
 
@@ -13,20 +16,38 @@ class SongPlayerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BasicAppbar(
-        title: Text(
+        title: const Text(
           'Now Playing',
           style: TextStyle(fontSize: 18),
         ),
         action: IconButton(
           onPressed: () {},
-          icon: Icon(Icons.more_vert_rounded),
+          icon: const Icon(Icons.more_vert_rounded),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [_songCover(context)],
-        ),
+      body: BlocProvider(
+  create: (_) => SongPlayerCubit()..loadSong(
+      '${AppURLs.songFirestorage}${songEnity.artist} - ${songEnity.title}.mp3?${AppURLs.mediaAlt}'
+  ),
+  child: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+        child: Builder(builder: (context) {
+          return Column(
+            children: [
+              _songCover(context),
+              const SizedBox(
+                height: 20,
+              ),
+              _songDetail(),
+              const SizedBox(
+                height: 30,
+              ),
+              // _songPlayer(context)
+            ],
+          );
+        }),
       ),
+),
     );
   }
 
@@ -35,9 +56,9 @@ class SongPlayerPage extends StatelessWidget {
       height: MediaQuery.of(context).size.height / 2,
       decoration: BoxDecoration(
           image: DecorationImage(
-            fit: BoxFit.cover,
+              fit: BoxFit.cover,
               image: NetworkImage(
-                  '${AppURLs.firestorage}${songEnity.artist} - ${songEnity.title}.jpg?${AppURLs.mediaAlt}'))),
+                  '${AppURLs.coverFirestorage}${songEnity.artist} - ${songEnity.title}.jpg?${AppURLs.mediaAlt}'))),
     );
   }
 
@@ -50,21 +71,24 @@ class SongPlayerPage extends StatelessWidget {
           children: [
             Text(
               songEnity.title,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 22
-              ),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
             ),
-            SizedBox(height: 5,),
+            const SizedBox(
+              height: 5,
+            ),
             Text(
               songEnity.artist,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400
-              ),
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
             )
           ],
         ),
+        IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.favorite_border_rounded,
+              size: 35,
+              color: AppColors.darkGrey,
+            ))
       ],
     );
   }

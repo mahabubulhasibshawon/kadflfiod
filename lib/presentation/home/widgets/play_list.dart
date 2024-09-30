@@ -6,6 +6,7 @@ import 'package:spotify/domain/entities/songs/song.dart';
 
 import '../../song_player/pages/song_player.dart';
 import '../bloc/play_list_cubit.dart';
+import '../bloc/play_list_state.dart';
 
 class PlayList extends StatelessWidget {
   const PlayList({super.key});

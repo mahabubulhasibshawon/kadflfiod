@@ -1,4 +1,5 @@
-part of 'play_list_cubit.dart';
+
+import '../../../domain/entities/songs/song.dart';
 
 abstract class PlayListState {}
 

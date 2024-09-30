@@ -45,14 +45,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             SizedBox(
               height: 260,
               child: TabBarView(controller: _tabController, children: [
-                NewsSongs(),
+                const NewsSongs(),
                 Container(),
                 Container(),
                 Container(),
               ]),
             ),
-            SizedBox(height: 40,),
-            PlayList()
+            const SizedBox(height: 40),
+            const PlayList()
           ],
         ),
       ),
@@ -60,20 +60,22 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   }
 
   Widget _homeTopCard() {
-    return SizedBox(
-      height: 140,
-      child: Stack(
-        children: [
-          Align(
-              alignment: Alignment.bottomCenter,
-              child: SvgPicture.asset(AppVectors.homeTopCard)),
-          Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 60.0),
-                child: Image.asset(AppImages.homeArtist),
-              ))
-        ],
+    return Center(
+      child: SizedBox(
+        height: 140,
+        child: Stack(
+          children: [
+            Align(
+                alignment: Alignment.bottomCenter,
+                child: SvgPicture.asset(AppVectors.homeTopCard)),
+            Align(
+                alignment: Alignment.bottomRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 60.0),
+                  child: Image.asset(AppImages.homeArtist),
+                ))
+          ],
+        ),
       ),
     );
   }
