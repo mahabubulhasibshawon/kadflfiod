@@ -6,6 +6,7 @@ import 'package:spotify/domain/entities/songs/song.dart';
 import 'package:spotify/presentation/song_player/bloc/song_player_cubit.dart';
 
 import '../../../core/configs/constants/app_urls.dart';
+import '../bloc/song_player_state.dart';
 
 class SongPlayerPage extends StatelessWidget {
   final SongEnity songEnity;
@@ -42,7 +43,7 @@ class SongPlayerPage extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              // _songPlayer(context)
+              _songPlayer(context)
             ],
           );
         }),
@@ -91,5 +92,68 @@ class SongPlayerPage extends StatelessWidget {
             ))
       ],
     );
+  }
+  Widget _songPlayer(BuildContext context) {
+    return BlocBuilder<SongPlayerCubit,SongPlayerState>(
+      builder: (context, state) {
+        if(state is SongPlayerLoading){
+          return const CircularProgressIndicator();
+        }
+        if(state is SongPlayerLoaded) {
+          return Column(
+            children: [
+              Slider(
+                  value: context.read<SongPlayerCubit>().songPosition.inSeconds.toDouble(),
+                  min: 0.0,
+                  max: context.read<SongPlayerCubit>().songDuration.inSeconds.toDouble() ,
+                  onChanged: (value){}
+              ),
+              const SizedBox(height: 20,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                      formatDuration(
+                          context.read<SongPlayerCubit>().songPosition
+                      )
+                  ),
+
+                  Text(
+                      formatDuration(
+                          context.read<SongPlayerCubit>().songDuration
+                      )
+                  )
+                ],
+              ),
+              const SizedBox(height: 20,),
+
+              GestureDetector(
+                onTap: (){
+                  context.read<SongPlayerCubit>().playOrPauseSong();
+                },
+                child: Container(
+                  height: 60,
+                  width: 60,
+                  decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.primary
+                  ),
+                  child: Icon(
+                      context.read<SongPlayerCubit>().audioPlayer.playing ? Icons.pause : Icons.play_arrow
+                  ),
+                ),
+              )
+            ],
+          );
+        }
+
+        return Container();
+      },
+    );
+  }
+  String formatDuration(Duration duration) {
+    final minutes = duration.inMinutes.remainder(60);
+    final seconds = duration.inSeconds.remainder(60);
+    return '${minutes.toString().padLeft(2,'0')}:${seconds.toString().padLeft(2,'0')}';
   }
 }

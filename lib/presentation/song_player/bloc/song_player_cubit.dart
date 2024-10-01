@@ -6,6 +6,7 @@ class SongPlayerCubit extends Cubit<SongPlayerState> {
   AudioPlayer audioPlayer = AudioPlayer();
   Duration songDuration = Duration.zero;
   Duration songPosition = Duration.zero;
+
   SongPlayerCubit() : super(SongPlayerLoading()) {
     audioPlayer.positionStream.listen((position) {
       songPosition = position;
@@ -17,32 +18,34 @@ class SongPlayerCubit extends Cubit<SongPlayerState> {
   }
 
   void updateSongPlayer() {
-    emit(
-      SongPlayerLoaded()
-    );
+    emit(SongPlayerLoaded());
   }
-
-
 
   Future<void> loadSong(String url) async {
     try {
       await audioPlayer.setUrl(url);
-      emit(
-        SongPlayerLoaded()
-      );
-    } catch(e) {
+      emit(SongPlayerLoaded());
+    } catch (e) {
       emit(SongPlayerFailure());
     }
   }
-void playOrPauseSone() {
-    if(audioPlayer.playing){
+
+  void playOrPauseSone() {
+    if (audioPlayer.playing) {
       audioPlayer.stop();
     } else {
       audioPlayer.play();
     }
-    emit(
-      SongPlayerLoaded()
-    );
+    emit(SongPlayerLoaded());
+  }
+
+  void playOrPauseSong() {
+    if (audioPlayer.playing) {
+      audioPlayer.stop();
+    } else {
+      audioPlayer.play();
+    }
+    emit(SongPlayerLoaded());
   }
 
   @override
